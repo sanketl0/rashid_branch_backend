@@ -1,0 +1,17 @@
+FROM python:3.10.12
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set the JAVA_HOME environment variable
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+COPY . /app
+COPY entrypoint.sh /app/entrypoint.sh
+WORKDIR /app
+
+RUN python3 -m venv /opt/venv
+
+RUN /opt/venv/bin/pip install --no-cache-dir -r requirements.txt &&  chmod +x entrypoint.sh
+
+CMD ["/app/entrypoint.sh"]

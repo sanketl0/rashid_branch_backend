@@ -1,0 +1,13 @@
+amount=Cnrefund_data["amount"]
+        if amount == 0:
+            cn_id = CreditNote.objects.get(cn_id=Cnrefund_data["cn_id"])       
+            print('cn_id', cn_id)              
+            cn_id.status='closed'
+            cn_id.save()
+            print('creditnote status updated to ', cn_id.status)
+        else:
+            cn_id = CreditNote.objects.get(cn_id=Cnrefund_data["cn_id"])
+            print('invoice id of else', cn_id)
+            cn_id.balance_amount= Cnrefund_data["amount"]            
+            cn_id.save()       
+            print('credinote amount due updated to ', cn_id.balance_amount)

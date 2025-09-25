@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Reciept</title>
+  </head>
+  
+ <body>
+
+  <TABLE style=" width:100%; border-top: 1px solid black;border-collapse: collapse;border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black" cellpadding="4">
+    <TR >
+     <TD>{{company_name}}</TD>
+     <TD></TD>
+     <TD></TD>
+    </TR>
+    <TR>
+     <TD>{{address}}</TD>
+     <TD></TD>
+     <TD></TD>
+    </TR>
+    <TR>
+     <TD>{{city}}</TD>
+     <TD></TD>
+     <TD></TD>
+    </TR>
+    <TR>
+     <TD>{{gst_in}}</TD>
+     <TD></TD>
+     <TD style="text-align: right;">PAYMENT RECEIPT</TD>
+    </TR>
+   </TABLE>
+   <TABLE style=" width: 100%; border-top: 1px solid black;border-collapse: collapse;border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black" cellpadding="4">
+    <TR>
+     <TH style="width:25%; "></TH>
+     <TH style="width:25%" ></TH>
+     <TH style="width:25%"></TH>
+     <TH style="width:25%"></TH>
+    </TR>
+    <TR>
+     <TD >Payment Date </TD>
+     <TD style="border-right: 1px solid">: {{estimate_serial}}</TD>
+     <TD >Amount Recieved</TD>
+     <TD >: {{place_of_supply}}</TD>
+    </TR>
+    <TR>
+     <TD >Reference Number</TD>
+     <TD style="border-right: 1px solid" >: {{estimate_date}}</TD>
+     <TD></TD>
+     <TD ></TD>         
+    </TR>    
+    <TR>
+     <TD >Payment Mode</TD> 
+     <TD style="border-right: 1px solid">: {{expiry_date}} </TD>
+     <TD></TD>
+     <TD ></TD>
+    </TR>
+    <TR>
+    <TD >Place Of Supply</TD>
+        <TD style="border-right: 1px solid" >: {{estimate_date}}</TD>
+        <TD></TD>
+        <TD ></TD>
+        </TR>
+    <TR>
+            <TD >Description of Supply</TD>
+            <TD style="border-right: 1px solid" >: {{estimate_date}}</TD>
+            <TD></TD>
+            <TD ></TD>
+            </TR>
+   </TABLE>
+    {% include 'section3.html' %}
+    
+       
+    {% include 'section5.html' %}   
+    <TH>Unused Amount</TH>  
+    <th> </th>
+  </body>
+</html>

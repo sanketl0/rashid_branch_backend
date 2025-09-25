@@ -1,0 +1,56 @@
+from django.urls import  path
+from integration.views import *
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+urlpatterns = [
+    path('addTask/', TaskView.as_view()),
+    path('getTask/<uuid:pk>/',TaskView.as_view()),
+    path('getTasks/<uuid:company_id>/<uuid:branch_id>/',TaskView.as_view()),
+    path('updateTask/<uuid:pk>/',TaskView.as_view()),
+    path('updateBranch/<uuid:branch_id>/',BranchManyView.as_view()),
+    path('addBranch/', BranchManyView.as_view()),
+    path('addCoa/',CoaManyView.as_view()),
+    path('addOpeningBalance/',OpeningBalanceView.as_view()),
+    path('addItem/',ItemManyView.as_view()),
+    path('addInventory/',ItemInventoryManyView.as_view()),
+    path('patchItem/<uuid:pk>/',ItemManyView.as_view()),
+    path('addItemGroup/', ItemGroupManyView.as_view()),
+    path('addTds/',TdsManyView.as_view()),
+    path('addTcs/',TcsManyView.as_view()),
+    path('addGodown/', GodownManyView.as_view()),
+    path('getGodownId/<str:wh_id>/<uuid:branch_id>/', IdViews.as_view()),
+    path('getBranchId/<str:gst_no>/<uuid:company_id>/',IdViews.as_view()),
+    path('getItemId/<str:item_id>/<uuid:branch_id>/',IdViews.as_view()),
+    path('getBatchDetail/<str:db_item_id>/',StockView.as_view()),
+    path('getItemGroupId/<str:item_grp_id>/<uuid:branch_id>/',IdViews.as_view()),
+    path('getTcsId/<str:tcs_id>/<uuid:branch_id>/',IdViews.as_view()),
+    path('getTdsId/<str:tds_id>/<uuid:branch_id>/',IdViews.as_view()),
+    path('getCoaId/<str:coa_id>/<uuid:company_id>/',IdViews.as_view()),
+    path('getItemAccount/<str:company_id>/',IdViews.as_view()),
+    path('getCustomerId/<str:customer_id>/<uuid:branch_id>/',IdViews.as_view()),
+    path('getVendorId/<str:vendor_id>/<uuid:branch_id>/', IdViews.as_view()),
+    path('getBillId/<str:bill_id>/<uuid:branch_id>/', IdViews.as_view()),
+    path('getInvoiceId/<str:invoice_id>/<uuid:branch_id>/', IdViews.as_view()),
+    path('getItemStock/', IdViews.as_view()),
+    path('addVendors/',VendorManyView.as_view()),
+    path('addCustomers/',CustomerManyView.as_view()),
+    path('addBill/',BillManyView.as_view()),
+    path('addMfg/',MfgManyView.as_view()),
+    path('addStockJournal/', StockJournalManyView.as_view()),
+    path('addInvoice/',InvoiceManyView.as_view()),
+    path('addPaymentMade/', PaymentMadeManyView.as_view()),
+    path('addPaymentRecv/', PaymentReceivedManyView.as_view()),
+    path('addCreditNote/', CreditNoteManyView.as_view()),
+    path('addDebitNote/', DebitNoteManyView.as_view()),
+    path('addVoucher/', VoucherManyView.as_view()),
+    path('addLogs/', LogsView.as_view()),
+    path('getLogs/<uuid:task_id>/', LogsView.as_view()),
+    path('token/refresh/', TokenRefreshView.as_view()),
+    path('getVersion/<str:name>/', VersionView.as_view()),
+    path('addGeneralVoucher/',GeneralVoucherType.as_view())
+
+
+
+]

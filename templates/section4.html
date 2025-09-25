@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+</head>
+<body>
+    <TABLE border="1" style="border: 1px solid #000000; border-collapse: collapse;width: 100%;" cellpadding="4px">
+        <TR>
+          <TH style="text-align: left;width: 5%;">#</TH>
+          <TH style="text-align: left;width: 20%;">Item & Description</TH>
+          <TH style="text-align: left;width: 10%;">HSN/SAC</TH>
+          <TH style="text-align: left;width: 10%;">Qty</TH>
+          <TH style="text-align: left;width: 10%;">Rate</TH>
+          <TH style="text-align: left;width: 10%;">Amount</TH>
+         </TR>
+         {% for d in invoice_items %}
+          <TR >
+            <TD>{{d.item_serial}}</TD>
+            <TD>{{ forloop.counter }}.{{d.item_name}}</TD>
+            <TD>{{d.hsn_sac}}</TD>
+            <TD>{{d.quantity}}</TD>
+            <TD>{{d.rate}}</TD>
+            <TD>{{d.amount}}</TD>
+          </TR>
+          {% endfor %}
+        </TABLE>
+    </body>
+</html>

@@ -1,0 +1,76 @@
+Model
+########################
+
+
+
+class Vendor1(models.Model):
+    vendor_id=models.UUIDField(primary_key=True,default=uuid.uuid4)
+    company_id = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True,related_name='get_vendor1')
+    salutation=models.CharField(max_length=50, blank=True, default='null', null=True)
+    vendor_name=models.CharField(max_length=50,blank=True,default='null',null=True)
+    company_name=models.CharField(max_length=50,blank=True,default='null',null=True)
+    vendor_display_name=models.CharField(max_length=50,blank=True,default='null',null=True)
+    vendor_contact=models.CharField(max_length=50, blank=True, default='null', null=True)
+    vendor_mobile=models.CharField(max_length=50, blank=True, default='null', null=True)
+    vendor_email=models.EmailField(max_length = 254)
+    website=models.CharField(max_length=50,blank=True,default='null',null=True)
+    vendor_designation=models.CharField(max_length=50,blank=True,default='null',null=True)
+    vendor_department=models.CharField(max_length=50,blank=True,default='null',null=True)
+    term_name=models.CharField(max_length=50,blank=True,default='null',null=True)
+    no_of_days=models.IntegerField(default=0)
+    set_credit_limit=models.DecimalField(decimal_places=2, max_digits=15, blank=True, null=True)
+    gst_treatment=models.CharField(max_length=50,blank=True,default='null',null=True)
+    gstin_number=models.CharField(max_length=50,blank=True,default='null',null=True)
+    tax_prefrances=models.CharField(max_length=50,blank=True,default='null',null=True)
+    supply_place=models.CharField(max_length=50,blank=True,default='null',null=True)
+    exemption_reason=models.CharField(max_length=50,blank=True,default='null',null=True)
+    pan_number=models.CharField(max_length=50,blank=True,default='null',null=True)
+    b_attention=models.CharField(max_length=50,blank=True,default='null',null=True)
+    bill_address1=models.CharField(max_length=50,blank=True,default='null',null=True)
+    bill_address2=models.CharField(max_length=50,blank=True,default='null',null=True)
+    bill_address_city=models.CharField(max_length=50,blank=True,default='null',null=True)
+    bill_address_state=models.CharField(max_length=50,blank=True,default='null',null=True)
+    bill_address_postal_code=models.CharField(max_length=50,blank=True,default='null',null=True)
+    bill_address_country=models.CharField(max_length=50,blank=True,default='null',null=True)
+    bill_contact_number=models.CharField(max_length=50,blank=True,default='null',null=True)
+    bill_fax_number=models.CharField(max_length=50,blank=True,default='null',null=True)
+    s_attention=models.CharField(max_length=50,blank=True,default='null',null=True)
+    ship_address1=models.CharField(max_length=50,blank=True,default='null',null=True)
+    ship_address2=models.CharField(max_length=50,blank=True,default='null',null=True)
+    ship_address_city=models.CharField(max_length=50,blank=True,default='null',null=True)
+    ship_address_state=models.CharField(max_length=50,blank=True,default='null',null=True)
+    ship_address_postal_code=models.CharField(max_length=50,blank=True,default='null',null=True)
+    ship_address_country=models.CharField(max_length=50,blank=True,default='null',null=True)
+    ship_contact_number=models.CharField(max_length=50,blank=True,default='null',null=True)
+    ship_fax_number=models.CharField(max_length=50,blank=True,default='null',null=True)
+    remarks=models.CharField(max_length=50,blank=True,default='null',null=True)
+    contact_person=models.CharField(max_length=50,blank=True,default='null',null=True)
+    contact_salutation=models.CharField(max_length=50,blank=True,default='null',null=True)
+    contact_name=models.CharField(max_length=50,blank=True,default='null',null=True)
+    contact_phone=models.CharField(max_length=50,blank=True,default='null',null=True)
+    contact_phone=models.CharField(max_length=50,blank=True,default='null',null=True)
+    contact_email=models.EmailField(max_length = 254)
+    contact_designation=models.CharField(max_length=50,blank=True,default='null',null=True)
+    contact_department=models.CharField(max_length=50,blank=True,default='null',null=True)
+    
+    created_id = models.CharField(max_length=50, default='null', blank=True, null=True)
+    created_date = models.DateTimeField(auto_now_add=True)#add current time in minute to the database table
+    modified_id = models.CharField(max_length=50, default='null', blank=True, null=True)
+    modified_date = models.DateTimeField(auto_now=True)# it adds the time that is currently updated
+    deleted_id = models.CharField(max_length=50, default='null', blank=True, null=True)
+    deleted_date = models.DateTimeField(auto_now=True)
+    
+
+
+
+#######################
+url
+router.register('purchase/addvendor',views.Vendor1Viewsets,basename='getvendor')# GET POST Vendor
+router.register('purchase/getvendorshortbycompanyid/',views.CompanyViewsets,basename='getvendorshortbycompanyid')#GET Vendor By Company id
+
+path('purchase/getvendor/',views.get_vendor1), #GET Vendor
+path('purchase/getvendorbyid/<int:pk>/',views.getvendor_byid),#GET Vendor BY Vendor id
+
+
+
+getvendorbyvendorname(pending)

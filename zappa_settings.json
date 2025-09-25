@@ -1,0 +1,18 @@
+{
+    "dev": {
+        "aws_region": "ap-south-1",
+        "django_settings": "autocount.settings",
+        "profile_name": "default",
+        "timeout_seconds": 300,
+        "environment_variables": {
+
+            "DEBUG":"PRODUCTION"
+        },
+        "slim_handler": true,
+        "delete_local_zip": false,
+        "project_name": "autocount",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-wq4ojdbon",
+        "layers": ["arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p39-numpy:9"]
+    }
+}

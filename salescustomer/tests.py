@@ -1,0 +1,2 @@
+from item.views import getFIFOstock_details
+print(getFIFOstock_details)

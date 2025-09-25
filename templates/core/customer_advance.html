@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Reciept</title>
+  </head>
+  
+ <body>
+
+  <TABLE style=" width:100%; border-top: 1px solid black;border-collapse: collapse;border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black" cellpadding="4">
+    <TR >
+     <TD>{{company_name}}</TD>
+     <TD></TD>
+     <TD></TD>
+    </TR>
+    <TR>
+     <TD>{{address}}</TD>
+     <TD></TD>
+     <TD></TD>
+    </TR>
+    <TR>
+     <TD>{{city}}</TD>
+     <TD></TD>
+     <TD></TD>
+    </TR>
+    <TR>
+     <TD>{{gst_in}}</TD>
+     <TD></TD>
+     <TD style="text-align: right;">PAYMENT RECEIPT</TD>
+    </TR>
+   </TABLE>
+   <TABLE style=" width: 100%; border-top: 1px solid black;border-collapse: collapse;border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black" cellpadding="4">
+    <TR>
+     <TH style="width:25%; "></TH>
+     <TH style="width:25%" ></TH>
+     <TH style="width:25%"></TH>
+     <TH style="width:25%"></TH>
+    </TR>
+    <TR>
+     <TD >Payment Date </TD>
+     <TD style="border-right: 1px solid">: {{customer_advance_date}}</TD>
+     <TD >Amount Recieved</TD>
+     <TD >: {{amount_received}}</TD>
+    </TR>
+    <TR>
+     <TD >Reference Number</TD>
+     <TD style="border-right: 1px solid" >: {{customer_advance_ref_no}}</TD>
+     <TD></TD>
+     <TD ></TD>         
+    </TR>    
+    <TR>
+     <TD >Payment Mode</TD> 
+     <TD style="border-right: 1px solid">: {{received_via}} </TD>
+     <TD></TD>
+     <TD ></TD>
+    </TR>
+    <TR>
+    <TD >Place Of Supply</TD>
+        <TD style="border-right: 1px solid" >: {{place_of_supply}}</TD>
+        <TD></TD>
+        <TD ></TD>
+        </TR>
+    <TR>
+            <TD >Description of Supply</TD>
+            <TD style="border-right: 1px solid" >: {{description_supply}}</TD>
+            <TD></TD>
+            <TD ></TD>
+            </TR>
+   </TABLE>
+    {% include 'section3.html' %}
+    
+       
+    <TABLE  style="border: 1px solid #000000; border-collapse: collapse;width: 100%;" cellpadding="4">
+      <TR>
+        <TH style="text-align: left;width: 70%;"></TH>
+        <TH style="border-left: 1px solid;width: 15%;"></TH> 
+        <TH style="border-left: 1px solid;width: 15%;"></TH> 
+       </TR>
+       <TR>
+        <TD > {{total_in_words}}</TD>
+        <TD style="border-left: 1px solid;">Sub Total</TD>
+        <TD style="border-right:1px black solid">{{sub_total}}</TD>
+       </TR>  
+
+
+       {% if discount > "1" %}   
+       <TR>             
+         <TD></TD>                                            
+         <TD style="border-left: 1px solid;">Discount</TD> 
+        <TD  style="border-right:1px black solid">{{discount}}</TD>
+       </TR>  
+       {% endif  %} 
+      
+       
+       {% if igst_total > "1"  %}   
+       <TR>  
+        <TD></TD>                         
+        <TD style="border-left: 1px solid;">IGST Total</TD>
+        <TD  style="border-right:1px black solid">{{igst_total}}</TD>
+        
+       </TR>
+       {% endif  %}
+
+
+       {% if cgst_total > "1" %}  
+       <TR>        
+        <TD></TD>       
+        <TD style="border-left: 1px solid;">CGST Total</TD>
+        <TD  style="border-right:1px black solid">{{cgst_total}}</TD>
+        
+       </TR>
+       {% endif  %}
+
+       
+     
+       {% if tcs > "1" %}
+       <TR>  
+        <TD></TD>                
+          <TD style="border-left: 1px solid;">TCS</TD>
+          <TD  style="border-right:1px black solid">{{tcs}}</TD>
+          
+         </TR>
+         {% endif  %}
+
+
+         {% if itemdescriptin  %}
+        <TR>  
+          <TD></TD>                
+        <TD style="border-left: 1px solid;">Item&Description</TD>
+        <TD  style="border-right:1px black solid">{{itemdescriptin}}</TD>
+        {% endif  %}
+       </TR>
+       
+       {% if sgst_total > "1"  %}
+       <TR>  
+        <TD></TD>                         
+        <TD style="border-left: 1px solid;">SGST Total</TD>
+        <TD  style="border-right:1px black solid">{{sgst_total}}</TD>
+        
+       </TR>
+       {% endif  %}
+
+
+        
+       {% if shipping_charges > "1" %}
+       <TR>                  
+        <TD></TD>         
+        <TD style="border-left: 1px solid;"> Shipping Charges	</TD>
+        <TD  style="border-right:1px black solid">{{shipping_charges}}</TD>         
+       </TR>   
+       {% endif  %}     
+       
+       
+       <TR>
+               
+        <TD >{{customer_note}}</TD>          
+        <TD style="border-left: 1px black solid;border-bottom: 1px black;">Balance Amount</TD>
+        <TD  style="border-right:1px black solid"><b>{{balance_amount}}</b></TD>
+       </TR>
+       <TR>
+        
+        {% if credit_remaining  %}
+        <TD></TD>
+        <TD style="border-left: 1px solid;border-bottom: 1px solid;">Credits Remaining	</TD>
+        <TD style="border-bottom: 1px solid;border-right: 1px black solid;">{{credit_remaining}}</TD>
+       </TR>
+       {% endif %}
+
+
+        <TR>
+          <TD></TD>
+          <TD style="border-left: 1px solid;border-top: 1px black solid;">	</TD>
+          <TD style="border-top: 1px black solid;border-right: 1px black solid;">	</TD>            
+         </TR>
+         <TR>
+
+          
+          <TD></TD>
+          <TD style="border-left: 1px black solid;">	</TD>
+          <TD style="border-right: 1px black solid;"></TD>
+         </TR>
+         <TR>
+          <TD></TD>
+          <TD style="border-left: 1px solid;">	</TD>
+          <TD style="border-right: 1px black solid;"></TD>
+         </TR>
+         <TR>
+          <TD></TD>
+          <TD style="border-left: 1px solid;">	</TD>
+          <TD style="border-right: 1px black solid;"></TD>
+         </TR>
+         <TR>
+          <TD></TD>
+          <TD style="border-left: 1px solid;">	</TD>
+          <TD style="border-right: 1px black solid;"></TD>
+         </TR>
+          <TR>
+            <TD></TD>
+            <TD style="border-left: 1px solid;">	</TD>
+            <TD style="border-right: 1px black solid;"></TD>
+           </TR>
+            <TR>
+              <TD ></TD>
+              <TD style="border-left: 1px  black solid;border-bottom: 1px black solid; text-align: center;">Authorized Signature	</TD>
+              <TD style="border-bottom: 1px black solid;border-right: 1px black solid;" ></TD>
+             </TR>
+             <T>
+      </TABLE>  
+    <TH>Unused Amount</TH>  
+    <th> </th>
+  </body>
+</html>

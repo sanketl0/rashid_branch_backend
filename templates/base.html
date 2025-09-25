@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+</head>
+<body>
+<TABLE style=" width:100%; border-top: 1px solid black;border-collapse: collapse;border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black" cellpadding="4px">
+  <TR >
+   <TD>{{company_name}}</TD>
+   <TD></TD>
+   <TD></TD>
+  </TR>
+  <TR>
+   <TD>{{address}}</TD>
+   <TD></TD>
+   <TD></TD>
+  </TR>
+  <TR>
+   <TD>{{city}}</TD>
+   <TD></TD>
+   <TD></TD>
+  </TR>
+  <TR>
+   <TD>{{gst_in}}</TD>
+   <TD></TD>
+   <TD style="text-align: right;">CREDIT NOTE</TD>
+  </TR>
+ </TABLE><TABLE style=" width: 100%; border-top: 1px solid black;border-collapse: collapse;border-bottom: 1px solid black;border-left: 1px solid black;border-right: 1px solid black" cellpadding="4">
+  <TR>
+   <TH style="width:25%; "></TH>
+   <TH style="width:25%" ></TH>
+   <TH style="width:25%"></TH>
+   <TH style="width:25%"></TH>
+  </TR>
+  <TR>
+   <TD >Cn serial</TD>
+   <TD style="border-right: 1px solid">:{{cn_serial}}</TD>
+   <TD >Place Of Supply</TD>
+   <TD >:{{place_of_supply}}</TD>
+   
+  </TR>
+  <TR>
+   <TD >Credit Date</TD>
+   <TD style="border-right: 1px solid" >:{{credit_date}}</TD>
+   <TD></TD>
+   <TD ></TD>
+  
+
+   
+  </TR>
+  <TR>
+   <TD >Invoice serial:</TD>
+   <TD style="border-right: 1px solid">:{{invoice_serial}}</TD>
+   <TD></TD>
+   <TD ></TD>
+   
+  </TR>
+  <TR>
+   <TD >Invoice Date:</TD> 
+   <TD style="border-right: 1px solid">:{{invoice_date}} </TD>
+   <TD></TD>
+   <TD ></TD>
+  </TR>
+ </TABLE>
+ <TABLE border="1" style="border: 1px solid #000000; border-collapse: collapse;width: 100%;" cellpadding="4">
+ <TR>
+   <TH style="text-align: left;">Bill To</TH>
+  </TR>
+  <TR>
+   <TD style="border-right: 1px solid">{{customer_name}}</TD> 
+  </TR>
+  <T>
+ </TABLE>
+ <TABLE border="1" style="border: 1px solid #000000; border-collapse: collapse;width: 100%;" cellpadding="4">
+ <TR>
+   <TH style="text-align: left;width: 5%;">#</TH>
+   <TH style="text-align: left;width: 20%;">Item & Description</TH>
+   <TH style="text-align: left;width: 10%;">HSN/SAC</TH>
+   <TH style="text-align: left;width: 10%;">Qty</TH>
+   <TH style="text-align: left;width: 10%;">Rate</TH>
+   <TH style="text-align: left;width: 10%;">Amount</TH>
+  </TR>
+  {% for item in credit_note_items %}
+  <TR >
+   <TD>{{ forloop.counter }}</TD>
+   <TD>{{item.item_name}}</TD>
+   <TD>{{item.hsn_sac}}</TD>
+   <TD>{{item.quantity}}</TD>
+   <TD>{{item.rate}}</TD>
+   <TD>{{item.amount}}</TD>
+  </TR>
+  {% endfor %}
+  
+  {% include 'section5.html' %}
+  </body>
+</html>
+ 
+ 
+ 
+ 
+ 
+ 

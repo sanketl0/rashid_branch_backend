@@ -1,0 +1,50 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8 # To install yq or any other required utilities
+    commands:
+      - pip install yq # yq is used to parse YAML files
+      - echo Installing Docker Compose...
+      - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      - chmod +x /usr/local/bin/docker-compose
+      - echo "dckr_pat_8QMzVHoQds-DxFg-adTsqzAupl8" | docker login -u "abdulrashid123" --password-stdin
+  pre_build:
+    commands:
+
+      - echo Logging in to Amazon S3...
+      - aws s3 sync s3://autocount-config/test_configuration .
+      - cat docker-compose.yaml
+      - sed -i 's/\r$//' scripts/stop-containers.sh
+      - sed -i 's/\r$//' scripts/start-containers.sh
+      - chmod +x scripts/stop-containers.sh
+      - chmod +x scripts/start-containers.sh
+      - ls
+      # Split the FULL_IMAGE_NAME into REPOSITORY_URI and IMAGE_TAG
+      - export REPOSITORY_URI="484965972490.dkr.ecr.ap-south-1.amazonaws.com/autocount/auto-api"
+      # Split the FULL_IMAGE_NAME into REPOSITORY_URI and IMAGE_TAG
+      - echo $REPOSITORY_URI
+
+      # Logging into Amazon ECR
+      - echo Logging into Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin "484965972490.dkr.ecr.ap-south-1.amazonaws.com/autocount/auto-api"
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image using docker-compose...
+      # Use docker-compose to build the image
+      - docker-compose build
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image to ECR...
+      - docker-compose -f docker-compose.yaml push
+artifacts:
+  files:
+    - docker-compose.yaml
+    - scripts/**
+    - appspec.yml
+    - pgbouncer/**
+  discard-paths: yes

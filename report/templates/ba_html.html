@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Horizontal Balance Sheet</title>
+   </head>
+   <style>
+      .header{
+      width:100%;
+      text-align:center;
+      padding-top:10px;
+      }
+      .header h3,h4,p{
+        margin:0;
+
+
+      }
+      table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      table-layout: fixed ;
+      width: 100%;
+      color:black;
+      }
+      th{
+      text-align:center;
+      font-weight: bold;
+      display:table-cell;
+      }
+      ul {
+      display: block;
+      list-style-type: disc;
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      padding-inline-start: 40px;
+      }
+   </style>
+   <body>
+      <div style="background-color:white;" class="header">
+         <h3>Company Name : {{company_name}}</h3>
+         <h4>Balance Sheet</h4>
+         <p>As of Date {% now "Y-m-d" %}</p>
+      </div>
+      <TABLE>
+         <TR>
+            {% for category, category_details in bill_items.items %}
+            <TH style="background-color: LightGray ;">{{category}}</TH>
+            {% endfor %}
+         </TR>
+         <TBODY style="background-color:white">
+            <TR>
+               {% for category, category_details in bill_items.items %}
+               <TD style="vertical-align:top;padding:0.5rem;border-bottom:0px;">
+                  {% for acc_type, acc_type_details in category_details.items %}
+                  <ul >
+                     <li>
+                        <b style="margin-left: 10px;">{{acc_type}}</b>
+                        <ul style="list-style-type: circle;">
+                           {% for acc_head, acc_head_details in acc_type_details.items %}
+                           <li>
+                              <b>{{acc_head}}</b>
+                              <ul style="list-style-type: square;">
+                                 {% for acc_subhead, acc_subhead_details in acc_head_details.items %}
+                                 <li>
+                                    <b>{{acc_subhead}}</b>
+                                    <ul>
+                                       {% for account_name, account_name_details in acc_subhead_details.items %}
+                                       <li>
+                                          <div>
+                                             <b>{{account_name}}</b>
+                                             <span  style="float: right; padding-right: 10px;">{{account_name_details}}</span>
+                                          </div>
+                                       </li>
+                                       {% endfor %}
+                                    </ul>
+                                 </li>
+                                 {% endfor %}
+                              </ul>
+                           </li>
+                           {% endfor %}
+                           {% comment %}
+                           <li>
+                              <!-- Access the total dictionary -->
+                              <b>TOTAL {{acc_type.upper}}</b>
+                              {% with sum_key=acc_type|add:"_sum" %}
+                              <!-- Access dictionary with a key -->
+                              <b style="float: right; padding-right: 10px">{{total_data|get_item:sum_key}}</b>
+                              {% endwith %}
+                           </li>
+                           {% endcomment %}
+                        </ul>
+                     </li>
+                  </ul>
+                  {% endfor %}
+               </TD>
+               {% endfor %}
+            </TR>
+            <TR style="border-top:0px">
+               <td style="padding:0.5rem;padding-top:0px;border-top:0px;">
+                  <ul >
+                     <li><b>Equity</b></li>
+                     <ul style="margin-left: 8%">
+                        {% if profit %}
+                        <li ><b>Current Year Earnings</b><span style="float: right; padding-right: 10px;">{{ profit }}</span></li>
+                        {% endif  %}
+                        {% if loss %}
+                        <li><b>Current Year Earnings</b><span style="float: right; padding-right: 10px;">{{ loss}}</span></li>
+                        {% endif  %}
+                     </ul>
+                  </ul>
+               </td>
+               <td style="border-top:0px;">
+               </td>
+            </TR>
+            <TR>
+               <td style="padding:0.75rem"><b>Liabilities Total</b> <b style="float: right; padding-right: 10px">{{Liabilities_Equity_sum|floatformat:2 }}</b></td>
+               <td style="padding:0.75rem"><b>Assets Total</b> <b style="float: right; padding-right: 10px">{{Assets_sum|floatformat:2 }}</b></td>
+            </TR>
+         </TBODY>
+      </TABLE>
+      <p>**Amount is displayed in your base currency INR</p>
+   </body>
+</html>
